@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, ui-monospace,
+    monospace;
+}
+
+@layer base {
+  :root,
+  .dark {
+    --color-bg: #090d12;
+    --color-bg-soft: #0d1219;
+    --color-surface: #111821;
+    --color-surface-strong: #17212d;
+    --color-text: #eef4fb;
+    --color-muted: #9ba8b7;
+    --color-line: #263241;
+    --color-accent: #74c0fc;
+    --color-accent-strong: #a7f3d0;
+    --color-warn: #f7c948;
+    --shadow-card: 0 20px 60px rgb(0 0 0 / 0.22);
+    --grid-line: rgb(116 192 252 / 0.08);
+    color-scheme: dark;
+  }
+
+  .light {
+    --color-bg: #f7f9fc;
+    --color-bg-soft: #eef3f8;
+    --color-surface: #ffffff;
+    --color-surface-strong: #edf4fb;
+    --color-text: #111827;
+    --color-muted: #536172;
+    --color-line: #d8e1ea;
+    --color-accent: #0969da;
+    --color-accent-strong: #087f5b;
+    --color-warn: #9a6700;
+    --shadow-card: 0 20px 50px rgb(15 23 42 / 0.08);
+    --grid-line: rgb(9 105 218 / 0.1);
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+    letter-spacing: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .page-shell {
+    width: min(1120px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  .engineering-grid {
+    background-color: var(--color-bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .button-transition {
+    transition:
+      border-color 160ms ease,
+      background-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .button-transition:hover {
+    transform: translateY(-1px);
+  }
+
+  .card-transition {
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .card-transition:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio website for Tonna Agburu, an aspiring computer engineer focused on accessible software and technology."
+    />
+    <title>Tonna Agburu | Aspiring Computer Engineer</title>
+    <script>
+      ;(() => {
+        const savedTheme = localStorage.getItem('portfolio-theme')
+        const theme = savedTheme === 'light' ? 'light' : 'dark'
+        document.documentElement.classList.add(theme)
+        document.documentElement.style.colorScheme = theme
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
