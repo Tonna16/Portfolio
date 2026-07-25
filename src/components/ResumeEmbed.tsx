@@ -17,7 +17,9 @@ export function ResumeEmbed({ path, fileName }: ResumeEmbedProps) {
     fetch(path, { method: 'HEAD' })
       .then((response) => {
         if (isCurrent) {
-          setStatus(response.ok ? 'available' : 'missing')
+          const contentType = response.headers.get('content-type') ?? ''
+          const isPdf = contentType.toLowerCase().includes('application/pdf')
+          setStatus(response.ok && isPdf ? 'available' : 'missing')
         }
       })
       .catch(() => {
@@ -33,18 +35,18 @@ export function ResumeEmbed({ path, fileName }: ResumeEmbedProps) {
 
   if (status === 'checking') {
     return (
-      <section className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
-        <div className="h-[32rem] animate-pulse rounded-md bg-[var(--color-bg-soft)]" />
+      <section className="surface-card rounded-xl p-5 sm:p-6">
+        <div className="h-[32rem] animate-pulse rounded-lg bg-[var(--color-bg-soft)]" />
       </section>
     )
   }
 
   if (status === 'missing') {
     return (
-      <section className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
-        <div className="grid min-h-80 place-items-center rounded-md border border-dashed border-[var(--color-line)] bg-[var(--color-bg-soft)] p-8 text-center">
+      <section className="surface-card rounded-xl p-5 sm:p-6">
+        <div className="grid min-h-80 place-items-center rounded-xl border border-dashed border-[var(--color-line-strong)] bg-[var(--color-bg-soft)] p-8 text-center">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-semibold text-[var(--color-text)]">
+            <h2 className="text-2xl font-semibold tracking-tight text-[var(--color-text)]">
               Resume PDF not added yet
             </h2>
             <p className="mt-4 leading-7 text-[var(--color-muted)]">
@@ -61,9 +63,9 @@ export function ResumeEmbed({ path, fileName }: ResumeEmbedProps) {
   }
 
   return (
-    <section className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-4 sm:p-6">
+    <section className="surface-card rounded-xl p-4 sm:p-6">
       <div className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-        <h2 className="text-2xl font-semibold text-[var(--color-text)]">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--color-text)]">
           Embedded Resume
         </h2>
         <ButtonLink href={path} variant="primary">
@@ -72,7 +74,7 @@ export function ResumeEmbed({ path, fileName }: ResumeEmbedProps) {
       </div>
       <object
         aria-label="Embedded resume PDF"
-        className="h-[36rem] w-full rounded-md border border-[var(--color-line)] bg-[var(--color-bg-soft)]"
+        className="h-[36rem] w-full rounded-lg border border-[var(--color-line)] bg-[var(--color-bg-soft)]"
         data={path}
         type="application/pdf"
       >

@@ -4,12 +4,28 @@ type Theme = 'dark' | 'light'
 
 const storageKey = 'portfolio-theme'
 
+function getStoredTheme(): Theme | null {
+  try {
+    return window.localStorage?.getItem(storageKey) === 'light' ? 'light' : null
+  } catch {
+    return null
+  }
+}
+
+function setStoredTheme(theme: Theme) {
+  try {
+    window.localStorage?.setItem(storageKey, theme)
+  } catch {
+    return
+  }
+}
+
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') {
     return 'dark'
   }
 
-  return window.localStorage.getItem(storageKey) === 'light' ? 'light' : 'dark'
+  return getStoredTheme() ?? 'dark'
 }
 
 export function useTheme() {
@@ -20,7 +36,7 @@ export function useTheme() {
     root.classList.remove('dark', 'light')
     root.classList.add(theme)
     root.style.colorScheme = theme
-    window.localStorage.setItem(storageKey, theme)
+    setStoredTheme(theme)
   }, [theme])
 
   return {

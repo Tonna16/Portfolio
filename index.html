@@ -11,7 +11,14 @@
     <title>Tonna Agburu | Aspiring Computer Engineer</title>
     <script>
       ;(() => {
-        const savedTheme = localStorage.getItem('portfolio-theme')
+        let savedTheme
+
+        try {
+          savedTheme = window.localStorage?.getItem('portfolio-theme')
+        } catch {
+          savedTheme = undefined
+        }
+
         const theme = savedTheme === 'light' ? 'light' : 'dark'
         document.documentElement.classList.add(theme)
         document.documentElement.style.colorScheme = theme

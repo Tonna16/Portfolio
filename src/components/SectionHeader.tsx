@@ -21,15 +21,13 @@ export function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p className="mb-3 text-sm font-semibold uppercase text-[var(--color-accent)]">
-          {eyebrow}
-        </p>
+        <p className="eyebrow mb-4">{eyebrow}</p>
       ) : null}
-      <h1 className="text-4xl font-semibold leading-tight text-[var(--color-text)] md:text-5xl">
+      <h1 className="text-4xl font-semibold tracking-tight text-[var(--color-text)] md:text-5xl md:leading-[1.05]">
         {title}
       </h1>
       {description ? (
-        <p className="mt-5 text-lg leading-8 text-[var(--color-muted)]">
+        <p className="mt-5 text-lg leading-8 text-[var(--color-muted)] md:text-xl">
           {description}
         </p>
       ) : null}

@@ -1,20 +1,23 @@
 import { ContactForm } from '../components/ContactForm'
+import { Reveal } from '../components/Reveal'
 import { SectionHeader } from '../components/SectionHeader'
 import { profile } from '../data/portfolio'
 
 export function ContactPage() {
   return (
-    <section className="page-shell py-16 md:py-24">
-      <SectionHeader
-        description="Direct contact links and a clean form interface for future email functionality."
-        eyebrow="Contact"
-        title="Contact"
-      />
+    <section className="page-shell py-20 md:py-28">
+      <Reveal>
+        <SectionHeader
+          description="Direct contact links and a clean form interface for future email functionality."
+          eyebrow="Contact"
+          title="Contact"
+        />
+      </Reveal>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="space-y-4">
-          <article className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
-            <p className="text-sm font-semibold text-[var(--color-accent)]">
+        <Reveal className="space-y-4">
+          <article className="surface-card card-transition rounded-xl p-6">
+            <p className="eyebrow">
               Email
             </p>
             <a
@@ -25,8 +28,8 @@ export function ContactPage() {
             </a>
           </article>
 
-          <article className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
-            <p className="text-sm font-semibold text-[var(--color-accent)]">
+          <article className="surface-card card-transition rounded-xl p-6">
+            <p className="eyebrow">
               GitHub
             </p>
             <a
@@ -39,8 +42,8 @@ export function ContactPage() {
             </a>
           </article>
 
-          <article className="rounded-lg border border-[var(--color-line)] bg-[var(--color-surface)] p-6">
-            <p className="text-sm font-semibold text-[var(--color-accent)]">
+          <article className="surface-card card-transition rounded-xl p-6">
+            <p className="eyebrow">
               LinkedIn
             </p>
             <a
@@ -52,9 +55,11 @@ export function ContactPage() {
               {profile.linkedin}
             </a>
           </article>
-        </div>
+        </Reveal>
 
-        <ContactForm />
+        <Reveal delay={120}>
+          <ContactForm />
+        </Reveal>
       </div>
     </section>
   )
